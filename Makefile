@@ -14,22 +14,22 @@ NAME = libft.a
 CFLAG = -Wall -Werror -Wextra
 FILES = *.c
 OUT = *.o
-BUP = *.\~
+BUP = *~
 
 all : $(NAME)
 
 $(NAME) :
 		gcc $(CFLAG) -c $(wildcard $(FILES))
-		ar rc $(NAME) $(OBJ)
-
-.PHONY : clean fclean re
+		ar rc $(NAME) $(OUT)
 
 clean :
-		/bin/rm -f $(OBJ)
-		/bin/rm -f $(OUT)
+		rm -f $(OUT)
+		rm -f $(BUP)
 
 fclean : clean
-		/bin/rm -f $(NAME)
+		rm -f $(NAME)
 
 re : fclean all
+
+.PHONY : clean fclean all re
 
