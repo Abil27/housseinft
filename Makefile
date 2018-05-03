@@ -19,11 +19,17 @@ BUP = *.\~
 all : $(NAME)
 
 $(NAME) :
-	gcc $(CFLAG) -c $(wildcard $(FILES))
-	ar rc $(NAME) $(OBJ)
+		gcc $(CFLAG) -c $(wildcard $(FILES))
+		ar rc $(NAME) $(OBJ)
 
 .PHONY : clean fclean re
 
 clean :
-	/bin/rm -f $(OBJ)
-	/bin/rm -f $(OUT)
+		/bin/rm -f $(OBJ)
+		/bin/rm -f $(OUT)
+
+fclean : clean
+		/bin/rm -f $(NAME)
+
+re : fclean all
+
