@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahoussei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/02 04:57:56 by ahoussei          #+#    #+#             */
-/*   Updated: 2018/05/03 02:50:54 by ahoussei         ###   ########.fr       */
+/*   Created: 2018/05/03 06:26:32 by ahoussei          #+#    #+#             */
+/*   Updated: 2018/05/03 06:35:00 by ahoussei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	char	*sub;
-
-	if (!s)
-		return (NULL);
-	sub = ft_strnew(len);
-	if (!sub)
-		return (NULL);
-	if (start + len > ft_strlen(s))
-		return (NULL);
-	while (len > 0)
-	{
-		len--;
-		sub[len] = s[start + len];
-	}
-	return (sub);
+	if (!lst)
+		return ;
+	if (lst->next)
+		ft_lstiter(lst->next, f);
+	f(lst);
 }

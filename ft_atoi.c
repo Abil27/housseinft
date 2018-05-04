@@ -14,23 +14,25 @@
 
 int	ft_atoi(const char *str)
 {
-	int	value;
-	int	sign;
+	int				i;
+	int				neg;
+	long long int	res;
 
-	value = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '+' || *str == '-')
+	res = 0;
+	neg = 1;
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' ||
+				str[i] == '\v' || str[i] == '\r' || str[i] == '\f'))
+		i++;
+	if (str[i] == '-')
+		neg = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] && (str[i] >= 48 && str[i] <= 57))
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		res *= 10;
+		res += (long long int)(neg * (str[i] - 48));
+		i++;
 	}
-	while (str[0] >= 48 && str[0] <= 57)
-	{
-		value = value * 10 + (str[0] - '0');
-		str++;
-	}
-	return (value * sign);
+	return (res);
 }

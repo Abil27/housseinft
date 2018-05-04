@@ -14,10 +14,18 @@
 
 char		*ft_strndup(const char *s1, size_t n)
 {
-	char	*tmp;
+	char	*dst;
+	size_t	i;
 
-	if (!(tmp = ft_strnew(n)))
-		return (NULL);
-	ft_strcpy(tmp, s1);
-	return (tmp);
+	dst = (char *)malloc(sizeof(char) * (n + 1));
+	if (!dst)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = ((char *)s1)[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

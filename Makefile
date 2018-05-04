@@ -11,25 +11,23 @@
 # **************************************************************************** #
 
 NAME = libft.a
-CFLAG = -Wall -Werror -Wextra
-FILES = *.c
-OUT = *.o
-BUP = *~
+CFLAG = -Wall -Werror -Wextra -c
+SRC = *.c
+OFILES = *.o
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) :
-		gcc $(CFLAG) -c $(wildcard $(FILES))
-		ar rc $(NAME) $(OUT)
+$(NAME):
+		gcc $(CFLAG) $(SRC)
+		ar rc $(NAME) $(OFILES)
 
-clean :
-		rm -f $(OUT)
-		rm -f $(BUP)
+clean:
+		/bin/rm -f $(OFILES)
 
-fclean : clean
-		rm -f $(NAME)
+fclean: clean
+		/bin/rm -f $(NAME)
 
-re : fclean all
+re: fclean all
 
-.PHONY : clean fclean all re
+.PHONY: clean fclean all re
 

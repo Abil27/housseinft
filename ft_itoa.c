@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahoussei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 17:50:15 by ahoussei          #+#    #+#             */
-/*   Updated: 2018/05/03 02:52:15 by ahoussei         ###   ########.fr       */
+/*   Created: 2018/05/03 05:58:31 by ahoussei          #+#    #+#             */
+/*   Updated: 2018/05/03 06:01:31 by ahoussei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static size_t	get_str_len(int n)
 {
-	size_t	nlen;
-	size_t	i;
+	size_t		i;
 
-	if (!*needle)
-		return ((char *)haystack);
-	nlen = ft_strlen(needle);
-	i = 0;
-	while (haystack[i] && i + nlen <= len)
-	{
-		if (ft_strncmp(&haystack[i], needle, nlen) == 0)
-			return (&((char *)haystack)[i]);
+	i = 1;
+	while (n /= 10)
 		i++;
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
+	char			*str;
+	size_t			str_len;
+	unsigned int	n_cpy;
+
+	str_len = get_str_len(n);
+	n_cpy = n;
+	if (n < 0)
+	{
+		n_cpy = -n;
+		str_len++;
 	}
-	return (NULL);
+	if (!(str = ft_strnew(str_len)))
+		return (NULL);
+	str[--str_len] = n_cpy % 10 + '0';
+	while (n_cpy /= 10)
+		str[--str_len] = n_cpy % 10 + '0';
+	if (n < 0)
+		*(str + 0) = '-';
+	return (str);
 }

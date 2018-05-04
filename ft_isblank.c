@@ -14,5 +14,7 @@
 
 int		ft_isblank(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }
