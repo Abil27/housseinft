@@ -18,7 +18,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	char	*str;
 
 	n = -1;
-	if (!s || !f || (!(str = ft_strnew(ft_strlen(s)))))
+	str = ft_strnew(ft_strlen(s));
+	if (!s || !f || (!(str)))
 		return ((void *)0);
 	while (s[++n])
 		str[n] = f(s[n]);

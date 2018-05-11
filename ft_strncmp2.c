@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahoussei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/01 17:50:15 by ahoussei          #+#    #+#             */
-/*   Updated: 2018/05/03 02:52:15 by ahoussei         ###   ########.fr       */
+/*   Created: 2018/05/08 03:29:45 by ahoussei          #+#    #+#             */
+/*   Updated: 2018/05/08 03:29:49 by ahoussei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdio.h>
+#include <string.h>
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	size_t	nlen;
-	size_t	i;
+int main () {
+   char str1[15];
+   char str2[15];
+   int ret;
 
-	if (!*needle)
-		return ((char *)haystack);
-	nlen = ft_strlen(needle);
-	i = 0;
-	while (haystack[i] && i + nlen <= len)
-	{
-		if (ft_strncmp(&haystack[i], needle, nlen) == 0)
-			return (&((char *)haystack)[i]);
-		i++;
-	}
-	return (NULL);
+   strcpy(str1, "abcdef");
+   strcpy(str2, "ABCDEF");
+
+   ret = strncmp(str1, str2, 6);
+
+   if(ret < 0) {
+      printf("str1 is less than str2");
+   } else if(ret > 0) {
+      printf("str2 is less than str1");
+   } else {
+      printf("str1 is equal to str2");
+   }
+   
+   return(0);
 }

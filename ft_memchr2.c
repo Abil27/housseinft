@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memchr2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahoussei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 05:58:31 by ahoussei          #+#    #+#             */
-/*   Updated: 2018/05/03 06:01:31 by ahoussei         ###   ########.fr       */
+/*   Created: 2018/05/09 17:43:14 by ahoussei          #+#    #+#             */
+/*   Updated: 2018/05/09 17:43:26 by ahoussei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static size_t	get_int_len(int n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t		i;
+	size_t	i;
 
-	i = 1;
-	while (n /= 10)
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char*)s)[i] == (unsigned char)c)
+			return (&((unsigned char*)s)[i]);
 		i++;
-	return (i);
+	}
+	return (NULL);
 }
 
-char			*ft_itoa(int n)
-{
-	char			*str;
-	size_t			str_len;
-	unsigned int	n_cpy;
+int main () {
+   const char str[] = "http://www.42.us.org";
+   const char ch = '2';
+   char *ret;
 
-	str_len = get_int_len(n);
-	n_cpy = n;
-	if (n < 0)
-	{
-		n_cpy = -n;
-		str_len++;
-	}
-	if (!(str = ft_strnew(str_len)))
-		return (NULL);
-	str[--str_len] = n_cpy % 10 + '0';
-	while (n_cpy /= 10)
-		str[--str_len] = n_cpy % 10 + '0';
-	if (n < 0)
-		*(str + 0) = '-';
-	return (str);
+   ret = ft_memchr(str, ch, 20);
+
+   printf("String after %c is - :%s\n", ch, ret);
+
+   return(0);
 }

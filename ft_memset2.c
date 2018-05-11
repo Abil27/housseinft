@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memset2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahoussei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 05:58:31 by ahoussei          #+#    #+#             */
-/*   Updated: 2018/05/03 06:01:31 by ahoussei         ###   ########.fr       */
+/*   Created: 2018/05/09 17:56:28 by ahoussei          #+#    #+#             */
+/*   Updated: 2018/05/09 17:56:46 by ahoussei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static size_t	get_int_len(int n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t		i;
+	size_t i;
 
-	i = 1;
-	while (n /= 10)
+	i = 0;
+	while (i < len)
+	{
+		((char *)b)[i] = (unsigned char)c;
 		i++;
-	return (i);
+	}
+	return (b);
 }
 
-char			*ft_itoa(int n)
-{
-	char			*str;
-	size_t			str_len;
-	unsigned int	n_cpy;
+int main () {
+   char str[50];
 
-	str_len = get_int_len(n);
-	n_cpy = n;
-	if (n < 0)
-	{
-		n_cpy = -n;
-		str_len++;
-	}
-	if (!(str = ft_strnew(str_len)))
-		return (NULL);
-	str[--str_len] = n_cpy % 10 + '0';
-	while (n_cpy /= 10)
-		str[--str_len] = n_cpy % 10 + '0';
-	if (n < 0)
-		*(str + 0) = '-';
-	return (str);
+   strcpy(str,"This is string.h library function");
+   puts(str);
+
+   ft_memset(str,'$',7);
+   puts(str);
+   
+   return(0);
 }
